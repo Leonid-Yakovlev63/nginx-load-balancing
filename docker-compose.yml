@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  nginx:
+    image: app-nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - api0
+      - api1
+      - api2
+      - api3
+      - api4
+    networks:
+      - app-network
+
+  api0:
+    image: app
+    ports:
+      - "80"
+    networks:
+      - app-network
+        
+  api1:
+    image: app
+    ports:
+      - "80"
+    networks:
+      - app-network
+  
+  api2:
+    image: app
+    ports:
+      - "80"
+    networks:
+      - app-network
+
+  api3:
+    image: app
+    ports:
+      - "80"
+    networks:
+      - app-network
+
+  api4:
+    image: app
+    ports:
+      - "80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
