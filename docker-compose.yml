@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   nginx:
+    container_name: app-nginx
     image: app-nginx
     ports:
       - "8080:80"
@@ -14,6 +15,7 @@ services:
       - app-network
 
   api0:
+    container_name: api0
     image: app
     ports:
       - "80"
@@ -21,6 +23,7 @@ services:
       - app-network
         
   api1:
+    container_name: api1
     image: app
     ports:
       - "80"
@@ -28,6 +31,7 @@ services:
       - app-network
   
   api2:
+    container_name: api2
     image: app
     ports:
       - "80"
@@ -35,6 +39,7 @@ services:
       - app-network
 
   api3:
+    container_name: api3
     image: app
     ports:
       - "80"
@@ -42,6 +47,7 @@ services:
       - app-network
 
   api4:
+    container_name: api4
     image: app
     ports:
       - "80"
