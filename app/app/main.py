@@ -1,7 +1,14 @@
 from fastapi import FastAPI, status
 from pydantic import BaseModel
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI()
+
+instrumentator = Instrumentator().instrument(app)
+
+@app.on_event("startup")
+async def _startup():
+    instrumentator.expose(app)
 
 class HealthCheck(BaseModel):
     status: str = "OK"
