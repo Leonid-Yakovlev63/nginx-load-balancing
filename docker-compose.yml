@@ -6,11 +6,16 @@ services:
     ports:
       - "8080:80"
     depends_on:
-      - api0
-      - api1
-      - api2
-      - api3
-      - api4
+      api0:
+        condition: service_healthy
+      api1:
+        condition: service_healthy
+      api2:
+        condition: service_healthy
+      api3:
+        condition: service_healthy
+      api4:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -21,6 +26,12 @@ services:
       - "80"
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
         
   api1:
     container_name: api1
@@ -29,6 +40,12 @@ services:
       - "80"
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
   
   api2:
     container_name: api2
@@ -37,6 +54,12 @@ services:
       - "80"
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   api3:
     container_name: api3
@@ -45,6 +68,12 @@ services:
       - "80"
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   api4:
     container_name: api4
@@ -53,6 +82,12 @@ services:
       - "80"
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
 networks:
   app-network:
