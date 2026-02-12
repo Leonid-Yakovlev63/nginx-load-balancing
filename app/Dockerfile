@@ -10,4 +10,4 @@ COPY ./app /code/app
 
 RUN pytest /code/app
 
-CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--workers", "4"]
